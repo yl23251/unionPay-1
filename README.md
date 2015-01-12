@@ -42,8 +42,8 @@ Example
         })
 
 
-    //server pay notice key,value object and secretKey
-    unionPay.payNotice({key: value}, secretKey).then(function (data) {
+    //server pay notice key,value object
+    unionPay.payNotice({key: value}).then(function (data) {
         xxx
     }).catch(function (err) {
             xxx
