@@ -1,5 +1,5 @@
 {
-	"name": "unionPay",
+	"name": "unionpay",
 	"version": "0.1.0",
 	"description": "china union pay push trader and query order by nodejs",
 	"main": "index.js",

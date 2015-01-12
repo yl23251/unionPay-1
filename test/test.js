@@ -6,11 +6,11 @@ var UnionPay = require('..');
 var should = require('should');
 
 var appInfo = {
-	merId: "880000000003009",
-	secret_key: "mz6CIT3SwwsA9aOy1n4Fycagpn1hKx9H",
+	merId: "xxx",
+	secret_key: "xxx",
 	tradeAdd: "http://202.101.25.178:8080/gateway/merchant/trade",
 	queryAdd: "http://202.101.25.178:8080/gateway/merchant/query",
-	backEndUrl: "http://www.polyvi.net:33000/api/payNotice"
+	backEndUrl: "xxx"
 };
 
 
