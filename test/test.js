@@ -7,7 +7,7 @@ var should = require('should');
 
 var appInfo = {
 	merId: "xxx",
-	secret_key: "xxx",
+	secret_key: "xxxx",
 	tradeAdd: "http://202.101.25.178:8080/gateway/merchant/trade",
 	queryAdd: "http://202.101.25.178:8080/gateway/merchant/query",
 	backEndUrl: "xxx"
