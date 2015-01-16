@@ -6,11 +6,11 @@ var UnionPay = require('..');
 var should = require('should');
 
 var appInfo = {
-	merId: "xxx",
+	merId: "xxxx",
 	secret_key: "xxxx",
-	tradeAdd: "http://202.101.25.178:8080/gateway/merchant/trade",
-	queryAdd: "http://202.101.25.178:8080/gateway/merchant/query",
-	backEndUrl: "xxx"
+	tradeAdd: "https://mgate.unionpay.com/gateway/merchant/trade",
+	queryAdd: "https://mgate.unionpay.com/gateway/merchant/query",
+	backEndUrl: "xxxx"
 };
 
 
@@ -30,7 +30,7 @@ describe('union server push test', function () {
 			})
 	});
 
-	it('good testCase for query trader', function (done) {
+	xit('good testCase for query trader', function (done) {
 		unionPay.queryTrade(orderNo, now).then(function (data) {
 			data.should.be.true;
 		}).catch(function (err) {

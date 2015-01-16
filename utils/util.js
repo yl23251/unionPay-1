@@ -5,7 +5,7 @@
 'use strict';
 var crypto = require('crypto');
 var Promise = require('bluebird');
-var http = require('http');
+var https = require('https');
 
 exports.cryptoMD5 = function (val) {
 	return new Promise(function (resolve, reject) {
@@ -16,16 +16,20 @@ exports.cryptoMD5 = function (val) {
 var splitUrl = function (url) {
 	return new Promise(function (resolve, reject) {
 		try {
-			url = url.split('//')[1];
+			var urlInfo = url.split('//');
+			url = urlInfo[1];
+			var protocol = urlInfo[0];
+			var isHttps = protocol === 'https:';
 			var urlSplit = url.split('/');
 			var path = url.substring(url.indexOf('/'), url.length);
 			var addInfo = urlSplit[0];
-			var port = addInfo.split(':')[1] || 80;
+			var port = addInfo.split(':')[1] || (isHttps ? 443 : 80);
 			var hostname = addInfo.split(':')[0];
 			resolve({
 				port: port,
 				hostname: hostname,
-				path: path
+				path: path,
+				https: isHttps
 			})
 		} catch (e) {
 			reject(e);
@@ -49,10 +53,20 @@ exports.requestHelper = function (postData) {
 					'Content-Length': body.length
 				}
 			};
-			var req = http.request(options, function (res) {
+			var request = '';
+			if (reqInfo.https)
+				request = require('https');
+			else
+				request = require('http');
+
+			var data = '';
+			var req = request.request(options, function (res) {
 				res.setEncoding('utf8');
 				res.on('data', function (chunk) {
-					resolve(chunk)
+					data += chunk;
+				});
+				res.on('end', function () {
+					resolve(data)
 				});
 			});
 
